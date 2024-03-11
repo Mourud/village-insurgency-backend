@@ -1,12 +1,10 @@
 package com.villageinsurgency.game;
 
 import com.villageinsurgency.game.model.Game;
-import com.villageinsurgency.game.model.TownCentre;
 import com.villageinsurgency.game.model.constants.GameConstants;
 import com.villageinsurgency.game.model.resourcehotspot.GoldMine;
-import com.villageinsurgency.game.persistence.JSonifier;
-import org.json.JSONObject;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GameRESTController {
