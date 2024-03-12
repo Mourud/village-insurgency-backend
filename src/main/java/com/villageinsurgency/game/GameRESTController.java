@@ -2,19 +2,18 @@ package com.villageinsurgency.game;
 
 import com.villageinsurgency.game.model.Game;
 import com.villageinsurgency.game.model.constants.GameConstants;
-import com.villageinsurgency.game.model.resourcehotspot.GoldMine;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutionException;
 
 @RestController
 public class GameRESTController {
     private final Game game = new Game(GameConstants.LEVEL1);
 
-    @PostMapping("/makeNewGame")
-    public Game greeting() {
-
-            GoldMine goldMine = new GoldMine();
-            return game;
+    @PostMapping("/Games")
+    public Game postGame() throws InterruptedException, ExecutionException {
+            return GameService.createCRUD(game);
 
 
     }
