@@ -18,6 +18,7 @@ public class Game {
     private boolean isPlayerTurn;
     //    private TownCentre turnTown;
     private int turnsPlayed;
+    private String key;
 
 
     // REQUIRES: valid difficulty
@@ -42,7 +43,7 @@ public class Game {
 
     public Game(JSONObject j) {
 
-        isPlayerTurn = j.getBoolean("isPlayerTurn");
+        isPlayerTurn = j.getBoolean("PlayerTurn");
         turnsPlayed = j.getInt("turnsPlayed");
 
         JSONObject playerTownJson = j.getJSONObject("playerTown");
@@ -108,10 +109,9 @@ public class Game {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Game)) {
+        if (!(o instanceof Game game)) {
             return false;
         }
-        Game game = (Game) o;
         return Objects.equals(playerTown, game.playerTown)
                 && Objects.equals(enemyTown, game.enemyTown);
     }
@@ -119,5 +119,13 @@ public class Game {
     @Override
     public int hashCode() {
         return Objects.hash(playerTown, enemyTown);
+    }
+
+    public void setId(String key) {
+        this.key = key;
+    }
+
+    public String getId() {
+        return key;
     }
 }
