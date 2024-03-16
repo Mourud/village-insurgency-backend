@@ -90,15 +90,16 @@ public class TownCentre extends GameObject {
         for (Object object : registryJson) {
             JSONObject personJson = (JSONObject) object;
             int idJson = personJson.getInt("id");
-            int healthJson = personJson.getInt("Health");
+            int healthJson = personJson.getInt("health");
             int curMaxHealthJson = personJson.getInt("curMaxHealth");
             int attackJson = personJson.getInt("attack");
             int gatherRateJson = personJson.getInt("gatherRate");
-            int posXJson = personJson.getInt("posX");
-            int posYJson = personJson.getInt("posY");
+            JSONObject position = personJson.getJSONObject("pos");
+            int posXJson = position.getInt("posX");
+            int posYJson = position.getInt("posY");
             Position positionJson = new Position(posXJson, posYJson);
             boolean nearResourceJson = personJson.getBoolean("nearResource");
-            boolean isSoldierJson = personJson.getBoolean("isSoldier");
+            boolean isSoldierJson = personJson.getBoolean("soldier");
             if (!isSoldierJson) {
                 registry.add(
                         new Villager(idJson,
