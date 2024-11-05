@@ -77,11 +77,6 @@ public class TownCentre extends GameObject {
     public TownCentre(JSONObject j) {
         super(SIZE, SIZE);
         isPlayer = j.getBoolean("isPlayer");
-        if (isPlayer) {
-            setPos(GameConstants.PLAYER_TOWN_POS);
-        } else {
-            setPos(GameConstants.ENEMY_TOWN_POS);
-        }
         amountFood = j.getInt("amountFood");
         amountGold = j.getInt("amountGold");
         personID = j.getInt("personID");
@@ -94,12 +89,12 @@ public class TownCentre extends GameObject {
             int curMaxHealthJson = personJson.getInt("curMaxHealth");
             int attackJson = personJson.getInt("attack");
             int gatherRateJson = personJson.getInt("gatherRate");
-            JSONObject position = personJson.getJSONObject("pos");
-            int posXJson = position.getInt("posX");
-            int posYJson = position.getInt("posY");
+//            JSONObject position = personJson.getJSONObject("pos");
+            int posXJson = personJson.getInt("posX");
+            int posYJson = personJson.getInt("posY");
             Position positionJson = new Position(posXJson, posYJson);
             boolean nearResourceJson = personJson.getBoolean("nearResource");
-            boolean isSoldierJson = personJson.getBoolean("soldier");
+            boolean isSoldierJson = personJson.getBoolean("isSoldier");
             if (!isSoldierJson) {
                 registry.add(
                         new Villager(idJson,
