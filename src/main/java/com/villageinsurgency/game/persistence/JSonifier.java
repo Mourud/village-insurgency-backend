@@ -23,7 +23,7 @@ public class JSonifier {
         savePerson.put("posY", p.getPos().getPosY());
         savePerson.put("attack", p.getAttack());
         savePerson.put("curMaxHealth", p.getCurMaxHealth());
-        savePerson.put("Health", p.getHealth());
+        savePerson.put("health", p.getHealth());
 
         return savePerson;
     }

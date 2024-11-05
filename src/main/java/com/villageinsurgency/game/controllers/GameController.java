@@ -1,12 +1,11 @@
 package com.villageinsurgency.game.controllers;
 
-import com.villageinsurgency.game.model.Game;
-import com.villageinsurgency.game.model.constants.GameConstants;
 import com.villageinsurgency.game.services.GameService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.concurrent.ExecutionException;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GameController {
@@ -16,30 +15,29 @@ public class GameController {
         this.gameService = gameService;
     }
 
-
-    @PostMapping("/Games")
-    public ResponseEntity<String> postGame() throws InterruptedException, ExecutionException {
-        Game game = new Game(GameConstants.LEVEL1);
-        return gameService.createGame(game);
-
+    @PutMapping("/units/create")
+    public ResponseEntity<String> createUnit(@RequestParam int gameKey, @RequestParam String type, @RequestParam String user) {
+        return gameService.createUnit(gameKey, type, user);
     }
 
-    @GetMapping("/Games")
-    public ResponseEntity<String> getGame(@RequestParam String gameKey)  throws InterruptedException, ExecutionException{
-
-        return gameService.getGame(gameKey);
+    @PostMapping("/games/create")
+    public ResponseEntity<String> createNewGame(@RequestParam String p1) {
+        return gameService.createGame(p1);
     }
 
-    @DeleteMapping("/Games")
-    public ResponseEntity<String> deleteGame(@RequestParam String gameKey)  throws InterruptedException, ExecutionException{
-        return gameService.deleteGame(gameKey);
+    @PutMapping("/games/join")
+    public ResponseEntity<String> joinGame(@RequestParam int gameKey, @RequestParam String p2){
+        return gameService.joinGame(gameKey, p2);
     }
 
-
-//    @PutMapping("/Games")
-//    public ResponseEntity<String> putGame(@RequestParam String gameKey)  throws InterruptedException, ExecutionException{
-//        return gameService.
+//    @GetMapping("/Games")
+//    public ResponseEntity<String> getGame(@RequestParam int gameKey) throws InterruptedException, ExecutionException {
+//        String gameJson = gameService.getGameObjectJsonById(gameKey);
+//        return ResponseEntity.ok(gameJson);
 //    }
+
+
+
 }
 
 

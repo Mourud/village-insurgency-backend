@@ -15,7 +15,7 @@ public class Game {
     public static ResourceHotSpot farm;
     private TownCentre playerTown;
     private TownCentre enemyTown;
-    private boolean isPlayerTurn;
+    public boolean isPlayerTurn;
     //    private TownCentre turnTown;
     private int turnsPlayed;
     private String key;
@@ -43,7 +43,7 @@ public class Game {
 
     public Game(JSONObject j) {
 
-        isPlayerTurn = j.getBoolean("PlayerTurn");
+        isPlayerTurn = j.getBoolean("isPlayerTurn");
         turnsPlayed = j.getInt("turnsPlayed");
 
         JSONObject playerTownJson = j.getJSONObject("playerTown");
